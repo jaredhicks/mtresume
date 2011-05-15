@@ -105,9 +105,9 @@
       pdfproducer   = \LaTeX{},
       bookmarksopen = true,
       pdftitle = {\@name}'s Resume,
-      pdfauthor = \@name
-      pdfsubject    = \@name,
-      pdfkeywords   = \@name resume curriculum vit\ae{}}
+      pdfauthor = {\@name},
+      pdfsubject    = {\@name},
+      pdfkeywords   = \@name{} resume curriculum vit\ae{}}
       }
   \pagenumbering{arabic}% has to be issued after loading hyperref
 }
