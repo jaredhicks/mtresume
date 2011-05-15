@@ -97,7 +97,7 @@
     \hypersetup{
       breaklinks,
       baseurl       = http://,
-      pdfborder     = 0 0 0,
+      pdfborder     = 0 0 0.5,
       pdfpagemode   = UseNone, % do not show thumbnails or bookmarks on opening
 %      pdfstartview  = FitH,
       pdfstartpage  = 1,
