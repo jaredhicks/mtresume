@@ -96,6 +96,7 @@
   \AtBeginDocument{
     \hypersetup{
       breaklinks,
+      colorlinks    = false,
       baseurl       = http://,
       pdfborder     = 0 0 0.5,
       pdfpagemode   = UseNone, % do not show thumbnails or bookmarks on opening
