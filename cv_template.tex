@@ -1,102 +1,12 @@
-\documentclass[9pt,letterpaper]{scrartcl}
+\documentclass[9pt,letterpaper,times]{mtresume}
 
-\usepackage{xifthen}  %provides \isempty test
 
-\usepackage{fullpage}
 
-\usepackage{hyperref}
 
-%===================================================================
-% Defining the style
 
-\usepackage[margin=1.0in,nohead,nofoot]{geometry}
 
 
 %\newgeometry{margin=0.5in}
-
-%\usepackage{ae,aecompl}
-%\usepackage{lmodern}  % Latin modern Sans (enhanced version on Computer Modern)
-%\usepackage{bookman}   % Bookman font as default roman. (Avant Garde as default sans)
-\usepackage{times}  % Times font as default roman
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}   % for using any of the TS1-encoding symbols with lmodern
-
-\frenchspacing  % Disable the additional space at the end of a sentance
-
-%===================================================================
-% Defining the DSL
-
-\makeatletter
-\newcommand*{\name}[1]{\def\@name{#1}}
-\newcommand*{\address}[3]{\def\@addressstreet{#1}\def\@addresscity{#2}\def\@addresszip{#3}}
-\newcommand*{\phone}[1]{\def\@phone{#1}}
-\newcommand*{\email}[1]{\def\@email{#1}}
-\makeatother
-
-
-\makeatletter                   % we want to be in a mode where we can play with macro defs
-\renewcommand{\@maketitle}{     % want to change the meaning of \@maketitle
- \vspace{1ex}%
- \begin{center}%
-  \textbf{\@name\\}%
-  \begin{tabular}{c|c|c|c|c}
-  \@addressstreet & \@addresscity & \@addresszip & \@phone & \href{mailto:\@email}{\@email}%
-  \end{tabular}
- \end{center}%
- }
-\makeatother
-
-\usepackage{setspace}
-\newenvironment{accomplishments}{%
-	\begin{list}{\textbullet}{%
-        \setlength\leftmargin{1em}      %line up left edge of env to left edge of item label
-        \setlength\topsep{0ex}          %
-        \setlength\parskip{0.5ex}
-        \setstretch{0.8}
-        \setlength\listparindent{1em}   %if for some reason we have a paragraph break, indent
-        \setlength\parsep{0in}          %but put no vertical space btw paragraphs
-        \setlength\itemsep{0.5ex}         %items are separated by \parsep + \itemsep
-        }
-}{
-	\end{list}
-}
-
-\newcommand{\accomplishment}{\item }
-
-%%%%%%%%%%%%%%%%%% Setting up sectioning %%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[explicit]{titlesec}  %explicit allows removing of the titles
-%syntax is:
-%\titleformat{command}[shape]{format}{label}{sep}{before}{after}
-%\titlespacing{command}{left}{beforesep}{aftersep}{right}
-\titleformat{\section}[display]{}{}{0em}{}
-\titlespacing{\section}{0em}{0em}{0em}
-
-%%%%%%%%%%%%%%%%% Environments for the user %%%%%%%%%%%%%%%%%%%%%
-
-%1st argument: Dates
-%2nd argument: Title
-%3rd argument: Company and location
-%4th argument: Responsibilities
-\newenvironment{job}[4]{%
-\vspace{0.0em}
-\noindent\textbf{\underline{{#1: #2\ifthenelse{\isempty{#3}}{}{, #3}}}}---#4%
-\noindent\begin{accomplishments}{}
-}{
-\end{accomplishments}
-\vspace{1.5em}
-}
-
-%1st argument: Degree name (e.g. MA Business Administration)
-%2nd argument: Year of degree
-%3rd argument: Conferring institution name
-%4th argument: Conferring institution location
-\newenvironment{degree}[4]{%
-\par\noindent#1, #3, #2
-}{
-\vspace{0.0ex}
-}
-
-
 
 %===================================================================
 
@@ -105,10 +15,6 @@
 \phone{123-456-789}
 \email{first.last@gmail.com}
 
-\hypersetup{%
-    pdftitle = {First Last's Resume},
-    pdfauthor = {First Last}
-}
 
 \usepackage{lipsum} % for random text use \lipsum
 
