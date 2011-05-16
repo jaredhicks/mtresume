@@ -113,10 +113,14 @@
   \pagenumbering{arabic}% has to be issued after loading hyperref
 }
 
+\RequirePackage{setspace}
+
 %===================================================================
 
-
+\AtBeginDocument{
 \frenchspacing  % Disable the additional space at the end of a sentance
+\setstretch{1.0}
+}
 
 
 %-------------------------------------------------------------------------------
@@ -142,22 +146,25 @@
  \end{center}%
  }
 
-\usepackage{setspace}
+\newcommand*{\compress}{\@minipagetrue}
+
 \newenvironment{accomplishments}{%
+    \begin{spacing}{0.2}                % compress vertical spacing WITHIN LIST
 	\begin{list}{\textbullet}{%
-        \setlength\leftmargin{1em}      %line up left edge of env to left edge of item label
+        %\compress                      % Removes whitespace before environment
+        \setlength\leftmargin{1em}      % line up left edge of env to left edge of item label
         \setlength\topsep{0ex}          %
         \setlength\parskip{0.5ex}
-        \setstretch{0.8}
-        \setlength\listparindent{1em}   %if for some reason we have a paragraph break, indent
-        \setlength\parsep{0in}          %but put no vertical space btw paragraphs
-        \setlength\itemsep{0.5ex}         %items are separated by \parsep + \itemsep
+        \setlength\listparindent{1em}   % if for some reason we have a paragraph break, indent
+        \setlength\parsep{0in}          %             but put no vertical space btw paragraphs
+        \setlength\itemsep{0.4ex}       % items are separated by \parsep + \itemsep
         }
 }{
 	\end{list}
+\end{spacing}
 }
 
-\newcommand{\accomplishment}{\item }
+\newcommand{\accomplishment}{\item}
 
 %========= Setting up sectioning  =============
 \usepackage[explicit]{titlesec}  %explicit allows removing of the titles
@@ -179,7 +186,7 @@
 \noindent\begin{accomplishments}{}
 }{
 \end{accomplishments}
-\vspace{1.5em}
+\vspace{2.0em}
 }
 
 %1st argument: Degree name (e.g. MA Business Administration)
