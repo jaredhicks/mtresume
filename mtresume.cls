@@ -87,6 +87,9 @@
 \if@bookman
 \RequirePackage{bookman}\fi
 
+% improvements to various subtle things
+\RequirePackage{microtype}
+
 % page geometry
 \RequirePackage[margin=1.0in,nohead,nofoot]{geometry}
 
