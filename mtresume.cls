@@ -192,12 +192,13 @@
 \vspace{2.0em}
 }
 
-%1st argument: Degree name (e.g. MA Business Administration)
+%0th argument: Degree name (e.g. MA)
+%1st argument: Degree field (e.g. Business Administration)
 %2nd argument: Year of degree
 %3rd argument: Conferring institution name
 %4th argument: Conferring institution location
-\newenvironment{degree}[4]{%
-\par\noindent#1, #3, #2
+\newenvironment{degree*}[5]{%
+\par\noindent#1 #2, \textbf{#4}, #3
 }{
 \vspace{0.0ex}
 }

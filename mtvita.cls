@@ -95,7 +95,8 @@
 
 % hyperlinks AND document properties
 \AtEndPreamble{
-    \RequirePackage{hyperref}
+  \RequirePackage{hyperref}
+
   \AtBeginDocument{
     \hypersetup{
       breaklinks,
@@ -113,7 +114,10 @@
       pdfsubject    = {\@name},
       pdfkeywords   = \@name{} resume curriculum vit\ae{}}
       }
+
   \pagenumbering{arabic}% has to be issued after loading hyperref
+
+  \title{\@name}
 }
 
 \RequirePackage{setspace}
@@ -196,14 +200,24 @@
 \vspace{2.0em}
 }
 
-%1st argument: Degree name (e.g. MA Business Administration)
+%0th argument: Degree name (e.g. MA)
+%1st argument: Degree field (e.g. Business Administration)
 %2nd argument: Year of degree
 %3rd argument: Conferring institution name
 %4th argument: Conferring institution location
-\newenvironment{degree}[4]{%
-\par\noindent#1, \textbf{#3}, #2
+\newenvironment{degree*}[5]{%
+\par\noindent#1 #2, \textbf{#4}, #3
 }{
 \vspace{0.0ex}
+}
+
+%1st argument: Award name (may include institution)
+%2nd argument: Year(s) of award
+%3rd argument: [optional--leave blank if none] description
+\newenvironment{award}[3]{%
+\par\noindent\textbf{#1} (#2)\ifthenelse{\isempty{#3}}{}{\\\noindent#3}%
+}{
+\vspace{0.5ex}
 }
 
 %===================================================================
