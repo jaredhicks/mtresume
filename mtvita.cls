@@ -18,6 +18,7 @@
 \DeclareOption{9pt}{\PassOptionsToClass{9pt}{scrartcl}}
 \DeclareOption{10pt}{\PassOptionsToClass{10pt}{scrartcl}}
 \DeclareOption{11pt}{\PassOptionsToClass{11pt}{scrartcl}}
+\DeclareOption{12pt}{\PassOptionsToClass{12pt}{scrartcl}}
 
 % available font:lmodern
 \newif\if@lmodern\@lmoderntrue
@@ -59,6 +60,8 @@
 %latex vs pdflatex vs xelatex vs luatex complation
 % see http://en.wikibooks.org/wiki/LaTeX/Tips_and_Tricks#Generic_header
 \RequirePackage{ifpdf}
+
+\RequirePackage{tabularx}
 
 %-------------------------------------------------------------------------------
 %                style packages
@@ -151,26 +154,42 @@
   \@addressstreet & \@addresscity & \@addresszip & \@phone & \href{mailto:\@email}{\@email}%
   \end{tabular}
  \end{center}%
- \vspace{1em}%
+ \vspace{0em}%
  }
 
 \newcommand*{\compress}{\@minipagetrue}
 
-\newenvironment{accomplishments}{%
-    \begin{spacing}{0.2}                % compress vertical spacing WITHIN LIST
-	\begin{list}{\textbullet}{%
-        %\compress                      % Removes whitespace before environment
+\newcommand*{\accompspacing}{
         \setlength\leftmargin{1em}      % line up left edge of env to left edge of item label
         \setlength\topsep{0ex}          %
         \setlength\parskip{0.5ex}
         \setlength\listparindent{1em}   % if for some reason we have a paragraph break, indent
         \setlength\parsep{0in}          %             but put no vertical space btw paragraphs
         \setlength\itemsep{0.4ex}       % items are separated by \parsep + \itemsep
+}
+
+\newenvironment{accomplishments}{%
+    \begin{spacing}{0.2}                % compress vertical spacing WITHIN LIST
+	\begin{list}{\textbullet}{%
+    \accompspacing
         }
 }{
 	\end{list}
 \end{spacing}
 }
+
+%% Compressed more!
+\newenvironment{accomplishments*}{%
+    \begin{spacing}{0.2}                % compress vertical spacing WITHIN LIST
+	\begin{list}{\textbullet}{%
+        \compress                      % Removes whitespace before environment
+    \accompspacing
+        }
+}{
+	\end{list}
+\end{spacing}
+}
+
 
 \newcommand{\accomplishment}{\item}
 
@@ -200,24 +219,46 @@
 \vspace{2.0em}
 }
 
+\newcommand{\eduspace}{\vspace{0.7em}}
+
+\newcommand{\degreeindent}{\\&}
+
+%%  Degree environment (compressed)
 %0th argument: Degree name (e.g. MA)
 %1st argument: Degree field (e.g. Business Administration)
 %2nd argument: Year of degree
 %3rd argument: Conferring institution name
 %4th argument: Conferring institution location
 \newenvironment{degree*}[5]{%
-\par\noindent#1 #2, \textbf{#4}, #3
+\par\noindent\tabularx{\linewidth}{@{}>{\raggedright}p{2em}X}
+#1 &\textbf{#4}, #2, #3
 }{
-\vspace{0.0ex}
+\eduspace
+}
+
+%%  Degree environment (multi-line)
+%0th argument: Degree name (e.g. MA)
+%1st argument: Degree field (e.g. Business Administration)
+%2nd argument: Year of degree
+%3rd argument: Conferring institution name
+%4th argument: Conferring institution location
+\newenvironment{degree}[5]{%
+\par\noindent\tabularx{\linewidth}{@{}>{\raggedright}p{2em}X}
+#1 &\textbf{#4}\\
+&#2, #3
+}{
+\endtabularx
+\eduspace
 }
 
 %1st argument: Award name (may include institution)
 %2nd argument: Year(s) of award
-%3rd argument: [optional--leave blank if none] description
-\newenvironment{award}[3]{%
-\par\noindent\textbf{#1} (#2)\ifthenelse{\isempty{#3}}{}{\\\noindent#3}%
+%Content: [optional--leave blank if none] description
+\newenvironment{award}[2]{%
+\par\noindent\textbf{#1} (#2)
+%\ifthenelse{\isempty{#3}}{\null}{\\\noindent#3}%
 }{
-\vspace{0.5ex}
+\vspace{1.9ex}
 }
 
 %===================================================================
