@@ -258,10 +258,14 @@
 \par\noindent\textbf{#1} (#2)
 %\ifthenelse{\isempty{#3}}{\null}{\\\noindent#3}%
 }{
-\vspace{1.9ex}
+\vspace{2.1ex}
 }
 
-%===================================================================
-%===================================================================
-% Setting up the doucument
+%% Lecture
+%1st argument: Title
+%2nd argument: Forum
+%3rd argument: Location
+%4th argument: Date
+\newcommand{\lecture}[4]{\par\noindent``{#1},''\par\noindent#2, #3, #4\vspace{2.5ex}}
+
 
