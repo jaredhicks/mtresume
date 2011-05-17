@@ -201,7 +201,7 @@
 %3rd argument: Conferring institution name
 %4th argument: Conferring institution location
 \newenvironment{degree}[4]{%
-\par\noindent#1, #3, #2
+\par\noindent#1, \textbf{#3}, #2
 }{
 \vspace{0.0ex}
 }
