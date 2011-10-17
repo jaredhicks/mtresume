@@ -101,6 +101,8 @@
   \RequirePackage{hyperref}
 
   \AtBeginDocument{
+% Don't want links displayed in color (for easier printing) or underlined (for printing).
+% But put them in boxes so that they are visible in readers as links
     \hypersetup{
       breaklinks,
       colorlinks    = false,
