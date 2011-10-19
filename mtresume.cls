@@ -39,6 +39,8 @@
 \DeclareOption{draft}{\PassOptionsToClass{draft}{scrartcl}}
 \DeclareOption{final}{\PassOptionsToClass{final}{scrartcl}}
 
+\PassOptionsToClass{pdftex}{scrartcl}
+
 % execute default options
 \ExecuteOptions{letterpaper,10pt}
 
@@ -91,7 +93,7 @@
 \RequirePackage{microtype}
 
 % page geometry
-\RequirePackage[margin=1.0in,nohead,nofoot]{geometry}
+\RequirePackage[margin=1.0in,nohead]{geometry}
 
 % hyperlinks AND document properties
 \AtEndPreamble{
