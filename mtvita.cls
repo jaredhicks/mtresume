@@ -28,9 +28,9 @@
 \newif\if@times\@timesfalse
 \DeclareOption{times}{\@timestrue}
 
-% available font:bookman
-\newif\if@bookman\@bookmanfalse
-\DeclareOption{bookman}{\@bookmantrue}
+% available font:palatino
+\newif\if@palatino\@palatinofalse
+\DeclareOption{palatino}{\@palatinotrue}
 
 % available paper sizes
 \DeclareOption{letterpaper}{\PassOptionsToClass{letterpaper}{scrartcl}}
@@ -63,6 +63,7 @@
 
 \RequirePackage{tabularx}
 
+
 %-------------------------------------------------------------------------------
 %                style packages
 %
@@ -84,14 +85,29 @@
 
 % Times New Roman font as default roman
 \if@times
-\RequirePackage{times}\fi
+\RequirePackage{mathptmx}\fi
 
-% Bookman font as default roman. (Avant Garde as default sans)
-\if@bookman
-\RequirePackage{bookman}\fi
+% palatino font as default roman. (sans?)
+\if@palatino
+\RequirePackage{mathpazo}
+\renewcommand{\sfdefault}{helvet}
+\fi
 
 % page geometry
-\RequirePackage[margin=1.1in,nohead,nofoot]{geometry}
+\RequirePackage[nofoot]{geometry}
+\geometry{
+    margin=1.1in,
+    headheight=3ex,
+    headsep=2ex
+}
+
+% header and footer
+\RequirePackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{\sf Curriculum Vitae: \@name}
+\rhead{\sf\thepage}
+\fancyfoot{}
+
 
 % improvements to various subtle things
 \RequirePackage{microtype}
@@ -131,7 +147,12 @@
 
 \AtBeginDocument{
 \frenchspacing  % Disable the additional space at the end of a sentance
+\setlength{\headwidth}{1.0\textwidth}   % make sure we have the correct textwidth
+\if@palatino
+\setstretch{1.05}
+\else
 \setstretch{1.0}
+\fi
 }
 
 
@@ -269,5 +290,110 @@
 %3rd argument: Location
 %4th argument: Date
 \newcommand{\lecture}[4]{\par\noindent``{#1},''\par\noindent#2, #3, #4\vspace{2.5ex}}
+
+% Bibliography formatting
+
+\RequirePackage[sorting=ynt,bibstyle=authoryear-comp,labelyear=false,defernumbers=true,maxnames=20,firstinits=true, uniquename=init,dashed=false]{biblatex}
+
+\DeclareFieldFormat{url}{\url{#1}}
+\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[article]{volume}{\textbf{#1}}
+\DeclareFieldFormat[article]{number}{(#1)}
+\DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
+\DeclareFieldFormat[inproceedings]{title}{#1}
+\DeclareFieldFormat{shorthandwidth}{#1}
+
+% Don't use "In:" in bibliography. Omit urls from journal articles.
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor}%
+  \setunit{\labelnamepunct}\newblock
+  \MakeSentenceCase{\usebibmacro{title}}%
+  \newunit
+  \printlist{language}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit\newblock
+%  \usebibmacro{in:}%
+  \usebibmacro{journal+issuetitle}%
+  \newunit\newblock
+  \printfield{note}%
+  \setunit{\bibpagespunct}%
+  \printfield{pages}
+  \newunit\newblock
+  \usebibmacro{eprint}
+  \newunit\newblock
+  \printfield{addendum}%
+  \newunit\newblock
+  \usebibmacro{pageref}%
+  \usebibmacro{finentry}}
+
+% Remove dot between volume and number in journal articles.
+\renewbibmacro*{journal+issuetitle}{%
+  \usebibmacro{journal}%
+  \setunit*{\addspace}%
+  \iffieldundef{series}
+    {}
+    {\newunit
+     \printfield{series}%
+     \setunit{\addspace}}%
+  \printfield{volume}%
+%  \setunit*{\adddot}%
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}%
+  \setunit{\addspace}%
+  \usebibmacro{issue+date}%
+  \newunit\newblock
+  \usebibmacro{issue}%
+  \newunit}
+
+
+% Bibliography categories
+\def\makebibcategory#1#2{\DeclareBibliographyCategory{#1}\defbibheading{#1}{\subsection*{#2}}}
+\makebibcategory{books}{Books}
+\makebibcategory{papers}{Refereed research papers}
+\makebibcategory{chapters}{Book chapters}
+\makebibcategory{conferences}{Papers in conference proceedings}
+\makebibcategory{techreports}{Unpublished working papers}
+\makebibcategory{bookreviews}{Book reviews}
+\makebibcategory{editorials}{Editorials}
+\makebibcategory{phd}{PhD thesis}
+\makebibcategory{subpapers}{Submitted papers}
+\makebibcategory{curpapers}{Current projects}
+
+\setlength{\bibitemsep}{2.65pt}
+\setlength{\bibhang}{.8cm}
+%\renewcommand{\bibfont}{\small}
+
+\renewcommand*{\bibitem}{\addtocounter{papers}{1}\item \mbox{}\hskip-0.85cm\hbox to 0.85cm{\hfill\arabic{papers}.~~}}
+\defbibenvironment{bibliography}
+{\list{}
+  {\setlength{\leftmargin}{\bibhang}%
+   \setlength{\itemsep}{\bibitemsep}%
+   \setlength{\parsep}{\bibparsep}}}
+{\endlist}
+{\bibitem}
+
+\newenvironment{publications}{\section{Publications}\label{papersstart}\vspace*{0.2cm}\small
+\titlespacing{\section}{0pt}{1.5ex}{1ex}\itemsep=0.00cm
+}{\label{papersend}\addtocounter{sumpapers}{-1}\refstepcounter{sumpapers}\label{sumpapers}}
+
+\def\printbib#1{\printbibliography[category=#1,heading=#1]\lastref{sumpapers}}
+
+% Counters for keeping track of papers
+\newcounter{papers}\setcounter{papers}{0}
+\newcounter{sumpapers}\setcounter{sumpapers}{0}
+\def\lastref#1{\addtocounter{#1}{\value{papers}}\setcounter{papers}{0}}
+
+% Add all papers in the bib file.
+\nocite{*}
 
 
