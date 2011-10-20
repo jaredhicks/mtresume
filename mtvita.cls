@@ -70,8 +70,6 @@
 % setting up the typesetting...
 %-------------------------------------------------------------------------------
 
-% font encoding
-\RequirePackage[T1]{fontenc}
 
 % scalable Computer Modern fonts
 %\usepackage{type1cm}
@@ -92,6 +90,9 @@
 \RequirePackage{mathpazo}
 \renewcommand{\sfdefault}{helvet}
 \fi
+
+% font encoding
+\RequirePackage[T1]{fontenc}
 
 % page geometry
 \RequirePackage[nofoot]{geometry}
@@ -278,7 +279,7 @@
 %2nd argument: Year(s) of award
 %Content: [optional--leave blank if none] description
 \newenvironment{award}[2]{%
-\par\noindent\textbf{#1} (#2)
+\par\noindent{#1} (#2)
 %\ifthenelse{\isempty{#3}}{\null}{\\\noindent#3}%
 }{
 \vspace{2.1ex}
