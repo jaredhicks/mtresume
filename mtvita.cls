@@ -87,7 +87,7 @@
 
 % palatino font as default roman. (sans?)
 \if@palatino
-\RequirePackage{mathpazo}
+\RequirePackage[osf]{mathpazo}
 \renewcommand{\sfdefault}{helvet}
 \fi
 
