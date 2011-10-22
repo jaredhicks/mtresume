@@ -105,7 +105,7 @@
 % header and footer
 \RequirePackage{fancyhdr}
 \pagestyle{fancyplain}
-\lhead{\sf Curriculum Vitae: \@name}
+\lhead{\sf \MyTitle: \MyName}
 \rhead{\sf\thepage}
 \fancyfoot{}
 
@@ -164,11 +164,13 @@
 %========= Defining the DSL =============
 
 \newcommand*{\name}[1]{\def\@name{#1}}
+\newcommand*{\docname}[1]{\def\@doc{#1}}
 \newcommand*{\address}[3]{\def\@addressstreet{#1}\def\@addresscity{#2}\def\@addresszip{#3}}
 \newcommand*{\phone}[1]{\def\@phone{#1}}
 \newcommand*{\email}[1]{\def\@email{#1}}
 
 \newcommand*{\MyName}{\@name}
+\newcommand*{\MyTitle}{\@doc}
 
 \renewcommand{\@maketitle}{     % want to change the meaning of \@maketitle
  \vspace{1em}%
@@ -189,7 +191,7 @@
         \setlength\parskip{0.5ex}
         \setlength\listparindent{1em}   % if for some reason we have a paragraph break, indent
         \setlength\parsep{0in}          %             but put no vertical space btw paragraphs
-        \setlength\itemsep{0.4ex}       % items are separated by \parsep + \itemsep
+        \setlength\itemsep{0.6ex}       % items are separated by \parsep + \itemsep
 }
 
 \newenvironment{accomplishments}{%
