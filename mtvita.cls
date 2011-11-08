@@ -176,6 +176,7 @@
  \vspace{1em}%
  \begin{center}%
   \textbf{\Large\@name\\}%
+ \vspace{0.3em}%
   \begin{tabular}{c|c|c|c|c}
   \@addressstreet & \@addresscity & \@addresszip & \@phone & \href{mailto:\@email}{\@email}%
   \end{tabular}
@@ -255,7 +256,7 @@
 \vspace{2.0em}
 }
 
-\newcommand{\eduspace}{\vspace{0.7em}}
+\newcommand{\eduspace}{0.7em}
 
 \newcommand{\degreeindent}{\\&}
 
@@ -269,7 +270,7 @@
 \par\noindent\tabularx{\linewidth}{@{}>{\raggedright}p{2em}X}
 #1 &\textbf{#4}, #2, #3
 }{
-\eduspace
+\vspace{\eduspace}
 }
 
 %%  Degree environment (multi-line)
@@ -284,7 +285,7 @@
 &#2, #3
 }{
 \endtabularx
-\eduspace
+\vspace{\eduspace}
 }
 
 %1st argument: Award name (may include institution)
