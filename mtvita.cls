@@ -257,7 +257,6 @@
 }
 
 \newcommand{\eduspace}{0.7em}
-
 \newcommand{\degreeindent}{\\&}
 
 %%  Degree environment (compressed)
@@ -288,11 +287,12 @@
 \vspace{\eduspace}
 }
 
+\newcommand{\refspace}{1.3em}
 %%  Reference environment (multi-line)
 \newenvironment{reference}[1]{%
 \par\noindent\ignorespaces\textbf{#1}\\
 }{
-\vspace{\eduspace}
+\vspace{\refspace}
 }
 
 %1st argument: Award name (may include institution)
