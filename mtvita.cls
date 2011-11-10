@@ -288,6 +288,13 @@
 \vspace{\eduspace}
 }
 
+%%  Reference environment (multi-line)
+\newenvironment{reference}[1]{%
+\par\noindent\ignorespaces\textbf{#1}\\
+}{
+\vspace{\eduspace}
+}
+
 %1st argument: Award name (may include institution)
 %2nd argument: Year(s) of award
 %Content: [optional--leave blank if none] description
