@@ -28,9 +28,9 @@
 \newif\if@times\@timesfalse
 \DeclareOption{times}{\@timestrue}
 
-% available font:bookman
-\newif\if@bookman\@bookmanfalse
-\DeclareOption{bookman}{\@bookmantrue}
+% available font:palatino
+\newif\if@palatino\@palatinofalse
+\DeclareOption{palatino}{\@palatinotrue}
 
 % available paper sizes
 \DeclareOption{letterpaper}{\PassOptionsToClass{paper=letter}{\baseclass}}
@@ -82,11 +82,16 @@
 
 % Times New Roman font as default roman
 \if@times
-\RequirePackage{times}\fi
+\RequirePackage{mathptmx}\fi
 
-% Bookman font as default roman. (Avant Garde as default sans)
-\if@bookman
-\RequirePackage{bookman}\fi
+% palatino font as default roman. (sans?)
+\if@palatino
+\RequirePackage[osf]{mathpazo}
+\renewcommand{\sfdefault}{helvet}
+\fi
+
+% font encoding
+\RequirePackage[T1]{fontenc}
 
 % improvements to various subtle things
 \RequirePackage{microtype}
@@ -130,6 +135,20 @@
 \newcommand*{\email}[1]{\def\@email{#1}}
 
 \newcommand*{\MyName}{\@name}
+
+
+\firsthead{     % match vita letterhead
+ \vspace{1em}%
+ \begin{center}%
+  \textbf{\Large\@name\\}%
+ \vspace{0.3em}%
+  \begin{tabular}{c|c|c|c|c}
+  \@addressstreet & \@addresscity & \@addresszip & \@phone & \href{mailto:\@email}{\@email}%
+  \end{tabular}
+ \end{center}%
+ \vspace{0em}%
+ }
+
 
 %-------------------------------------------------------------------------------
 %                document setup
