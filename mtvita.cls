@@ -105,7 +105,7 @@
 % header and footer
 \RequirePackage{fancyhdr}
 \pagestyle{fancyplain}
-\lhead{\sf \MyTitle: \MyName}
+\lhead{\sf \MyName: \MyTitle}
 \rhead{\sf\thepage}
 \fancyfoot{}
 
