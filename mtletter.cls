@@ -93,6 +93,8 @@
 % font encoding
 \RequirePackage[T1]{fontenc}
 
+\RequirePackage[american]{babel}
+
 % improvements to various subtle things
 \RequirePackage{microtype}
 

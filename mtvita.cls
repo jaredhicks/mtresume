@@ -94,6 +94,8 @@
 % font encoding
 \RequirePackage[T1]{fontenc}
 
+\RequirePackage[american]{babel}
+
 % page geometry
 \RequirePackage[nofoot]{geometry}
 \geometry{
