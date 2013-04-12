@@ -194,6 +194,16 @@
 \vspace{2.0em}
 }
 
+%1st argument: Dates
+%2nd argument: Title
+%3rd argument: Company and location
+%4th argument: Responsibilities
+\newenvironment{job*}[4]{%
+\vspace{0.0em}
+\noindent\textbf{\underline{{#1: #2\ifthenelse{\isempty{#3}}{}{, #3}}}}---#4%
+\vspace{2.0em}
+}
+
 %0th argument: Degree name (e.g. MA)
 %1st argument: Degree field (e.g. Business Administration)
 %2nd argument: Year of degree
