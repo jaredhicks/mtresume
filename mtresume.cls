@@ -132,7 +132,7 @@
 % enable 2-digit year
 \newcommand*{\shortyear}[1]{%
 \def\yy@##1##2##3##4;{##3##4}%
-    \expandafter\yy@#1;
+    \expandafter\yy@#1;%
 }
 
 % define date styles
