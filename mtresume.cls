@@ -71,6 +71,9 @@
 % font encoding
 \RequirePackage[T1]{fontenc}
 
+% Locale
+\RequirePackage[american]{babel}
+
 % scalable Computer Modern fonts
 %\usepackage{type1cm}
 \usepackage{ae,aecompl}
@@ -119,6 +122,23 @@
 }
 
 \RequirePackage{setspace}
+
+% for configurable and consistent date formatting
+%-----------------------------------------------
+% call via \mtDate\formatdate{d}{m}{y}
+% could also use \shortmonthname
+\RequirePackage{datetime}
+
+% enable 2-digit year
+\newcommand*{\shortyear}[1]{%
+\def\yy@##1##2##3##4;{##3##4}%
+    \expandafter\yy@#1;
+}
+
+% define date styles
+\newdateformat{mtDate}{\monthname[\THEMONTH]~\shortyear{\the\@year}}
+%\newdateformat{mtDate}{\monthname[\THEMONTH]~\THEYEAR}
+\newdateformat{mtNow}{Present}
 
 %===================================================================
 
