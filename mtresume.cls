@@ -145,6 +145,8 @@
  \vspace{1ex}%
  \begin{center}%
   \textbf{\@name\\}%
+ \vspace{0.9ex}%
+ %\vspace{0.3em}%
   \begin{tabular}{c|c|c|c}
   \@addressstreet & \@addresscity~\@addresszip & \@phone & \href{mailto:\@email}{\@email}%
   \end{tabular}
