@@ -121,6 +121,11 @@
   \pagenumbering{arabic}% has to be issued after loading hyperref
 }
 
+% consistant formatting of numbers
+% http://tex.stackexchange.com/questions/81670/how-are-amounts-of-money-to-be-typeset
+\RequirePackage{siunitx}
+\newcommand*{\usd}[1]{\SI{#1}[\$]{}}
+
 \RequirePackage{setspace}
 
 % for configurable and consistent date formatting
